@@ -308,6 +308,7 @@ function get_exercises( $user_id, $from = false, $to = false, $limit = false ) {
 	<link rel="icon" type="image/x-icon" href="<?php echo $path_prefix; ?>favicon.ico">
 	<link rel="stylesheet" href="<?php echo $path_prefix; ?>assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo $path_prefix; ?>assets/css/style.min.css">
+	<script src="<?php echo $path_prefix; ?>assets/js/script.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -345,48 +346,8 @@ function get_exercises( $user_id, $from = false, $to = false, $limit = false ) {
 									<input type="text" name="limit" placeholder="limit">
 									<input type="submit" value="Submit">
 								</form>
-
-								<script>
-								document.addEventListener( 'DOMContentLoaded', ( event ) => {
-									document.querySelector( '#add-exercise-form' ).addEventListener( 'submit', ( event2 ) => {
-										event2.preventDefault();
-
-										let user_id = event2.target.querySelector( 'input[name="user_id"]' ).value;
-
-										if ( user_id === '' ) {
-											user_id = '0';
-										}
-
-										let form_action_initial = event2.target.action;
-										event2.target.action = event2.target.action.replace( 'user_id', user_id );
-										event2.target.submit();
-										event2.target.action = form_action_initial;
-									} );
-
-									document.querySelector( '#get-user-log-form' ).addEventListener( 'submit', ( event2 ) => {
-										event2.preventDefault();
-
-										let user_id = event2.target.querySelector( '.user_id' ).value;
-
-										if ( user_id === '' ) {
-											user_id = '0';
-										}
-
-										let form_action_initial = event2.target.action;
-										event2.target.action = event2.target.action.replace( 'user_id', user_id );
-										event2.target.submit();
-										event2.target.action = form_action_initial;
-									} );
-								} );
-								</script>
 							</div>
 						</div>
-					</div>
-
-					<div>
-						<p><strong>GET user's exercise log:</strong> <code>GET /api/users/user_id/logs[?from][&amp;to][&amp;limit]</code><br>
-							<strong>[ ]</strong> = optional<br>
-							<strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
 					</div>
 
 					<div>
