@@ -16,7 +16,7 @@ if ( isset( $_SERVER['PATH_INFO'] ) ) {
 		}
 
 		if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
-			if ( strpos( $_SERVER['PATH_INFO'], '/exercises' ) !== false || strpos( $_SERVER['PATH_INFO'], '/logs' ) !== false ) {
+			if ( strpos( $_SERVER['PATH_INFO'], '/exercises' ) !== false ) {
 				preg_match( '~\/api\/users\/(.*)\/.*~', $_SERVER['PATH_INFO'], $matches );
 				$user_id = $matches[1];
 
@@ -337,9 +337,9 @@ function get_exercises( $user_id, $from = false, $to = false, $limit = false ) {
 									<input type="submit" value="Submit">
 								</form>
 
-								<form id="get-user-log-form" action="<?php echo $path_prefix; ?>api/users/user_id/logs" method="get">
+								<form id="get-exercises-form" action="<?php echo $path_prefix; ?>api/users/user_id/exercises" method="get">
 									<h3>Get user's exercise log</h3>
-									<p><code>GET /api/users/user_id/logs[?from][&amp;to][&amp;limit]</code></p>
+									<p><code>GET /api/users/user_id/exercises[?from][&amp;to][&amp;limit]</code></p>
 									<input type="text" class="user_id" placeholder="user_id*" required>
 									<input type="text" name="from" placeholder="from (yyyy-mm-dd)">
 									<input type="text" name="to" placeholder="to (yyyy-mm-dd)">

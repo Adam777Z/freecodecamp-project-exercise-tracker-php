@@ -14,7 +14,7 @@ document.addEventListener( 'DOMContentLoaded', ( event ) => {
 		event2.target.action = form_action_initial;
 	} );
 
-	document.querySelector( '#get-user-log-form' ).addEventListener( 'submit', ( event2 ) => {
+	document.querySelector( '#get-exercises-form' ).addEventListener( 'submit', ( event2 ) => {
 		event2.preventDefault();
 
 		let user_id = event2.target.querySelector( '.user_id' ).value;
