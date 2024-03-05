@@ -230,6 +230,12 @@ function get_users() {
 	$query = $db->query( "SELECT * FROM users" );
 	$result = $query->fetchAll( PDO::FETCH_ASSOC );
 
+	if ( $result ) {
+		foreach ( $result as $key => $value ) {
+			$result[$key]['id'] = (int) $result[$key]['id'];
+		}
+	}
+
 	return $result ? $result : [];
 }
 
@@ -239,6 +245,10 @@ function get_user( $user_id ) {
 	$query = $db->query( "SELECT * FROM users WHERE id = {$db->quote( $user_id )}" );
 	$result = $query->fetchAll( PDO::FETCH_ASSOC );
 
+	if ( $result ) {
+		$result[0]['id'] = (int) $result[0]['id'];
+	}
+
 	return $result ? $result[0] : false;
 }
 
@@ -247,6 +257,10 @@ function get_user_id( $username ) {
 
 	$query = $db->query( "SELECT id FROM users WHERE username = {$db->quote( $username )}" );
 	$result = $query->fetchAll( PDO::FETCH_ASSOC );
+
+	if ( $result ) {
+		$result[0]['id'] = (int) $result[0]['id'];
+	}
 
 	return $result ? $result[0]['id'] : false;
 }
@@ -265,9 +279,9 @@ function add_exercise( $user_id, $description, $duration, $date ) {
 	global $db;
 
 	$data = [
-		'user_id' => $user_id,
+		'user_id' => (int) $user_id,
 		'description' => $description,
-		'duration' => $duration,
+		'duration' => (int) $duration,
 		'date' => $date,
 	];
 	$sth = $db->prepare( 'INSERT INTO exercises (user_id, description, duration, date) VALUES (:user_id, :description, :duration, :date)' );
@@ -295,6 +309,12 @@ function get_exercises( $user_id, $from = false, $to = false, $limit = false ) {
 
 	$query = $db->query( $query );
 	$result = $query->fetchAll( PDO::FETCH_ASSOC );
+
+	if ( $result ) {
+		foreach ( $result as $key => $value ) {
+			$result[$key]['duration'] = (int) $result[$key]['duration'];
+		}
+	}
 
 	return $result ? $result : [];
 }
